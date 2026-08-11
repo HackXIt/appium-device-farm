@@ -26,6 +26,9 @@ jobs:
         with:
           ref: main
           fetch-depth: 0
+          # Use a PAT with workflow scope so upstream changes under .github/workflows
+          # can be synced. The default GITHUB_TOKEN cannot update workflow files.
+          token: ${{ secrets.UPSTREAM_SYNC_TOKEN }}
           persist-credentials: true
 
       - name: Merge upstream main and tags
